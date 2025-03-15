@@ -1,0 +1,52 @@
+services:
+  todo-cubo-app:
+    build:
+      context: ./todo-cubo
+      dockerfile: Dockerfile
+      args:
+        user: laravel
+        uid: 1000
+    ports:
+      - "3000:3000"
+    container_name: todo-cubo-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - todo-cubo-network
+
+  nginx:
+    image: nginx
+    container_name: todo-cubo-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+    - ./:/var/www
+    - ./docker/nginx:/etc/nginx/conf.d
+    networks:
+    - todo-cubo-network
+
+  db:
+    image: postgres:15
+    container_name: todo-cubo-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - todo-cubo-network
+
+networks:
+  todo-cubo-network:
+    driver: bridge
+
+volumes:
+  pgdata:
+    driver: local
