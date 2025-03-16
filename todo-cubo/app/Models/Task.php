@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\TaskStatus;
+use App\Model\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,7 @@ class Task extends Model
         'description',
         'status',
         'due_date',
+        'user_id',
         'completed'
     ];
 
@@ -24,6 +26,11 @@ class Task extends Model
         'due_date' => 'datetime',
         'status' => TaskStatus::class
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::Class);
+    }
 
     // query scopes
     public function scopePending($query)

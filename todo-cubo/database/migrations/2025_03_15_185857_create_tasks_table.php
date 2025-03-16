@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('status', TaskStatus::values())->default(TaskStatus::PENDING->value);
             $table->timestamp('due_date')->nullable();
             $table->boolean('completed')->default(false);
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
