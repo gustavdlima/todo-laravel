@@ -30,12 +30,18 @@ class TaskSeeder extends Seeder
             ->count(8)
             ->create();
 
+        $admin = User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+        ]);
+
         Task::factory()->create([
             'title' => 'Send data to the mayor',
             'description' => 'Data for presentation on neighborhoods without paved streets.',
             'status' => TaskStatus::PENDING,
             'due_date' => now()->addDays(5),
             'completed' => false,
+            'user_id' => $admin->id,
         ]);
 
         Task::factory()->create([
@@ -44,14 +50,16 @@ class TaskSeeder extends Seeder
             'status' => TaskStatus::IN_PROGRESS,
             'due_date' => now()->addDay(),
             'completed' => false,
+            'user_id' => $admin->id,
         ]);
 
         Task::factory()->create([
             'title' => 'Project delivery',
-            'description' => 'Finalize and publish version 1.0 of the product',
+            'description' => 'Finish and publish version 1.0 of the product',
             'status' => TaskStatus::COMPLETED,
             'due_date' => now()->subDays(2),
             'completed' => true,
+            'user_id' => $admin->id,
         ]);
     }
 }

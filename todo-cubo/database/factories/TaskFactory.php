@@ -24,6 +24,7 @@ class TaskFactory extends Factory
             'status' => $this->faker->randomElement(TaskStatus::cases()),
             'completed' => $this->faker->boolean(20), // 20%
             'due_date' => $this->faker->dateTimeBetween('now', '+30 days'),
+            'user_id' => User::factory()
         ];
     }
 
@@ -68,6 +69,21 @@ class TaskFactory extends Factory
             return [
                 'status' => TaskStatus::COMPLETED,
                 'completed' => true,
+            ];
+        });
+    }
+
+    /**
+     * Indicates that the task belongs to a specific user..
+     *
+     * @param \App\Models\User
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function forUser(User $user)
+    {
+        return $this->state(function (array $attributes) use ($user) {
+            return [
+                'user_id' => $user->id,
             ];
         });
     }
