@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Infrastructure\Models;
 
 use App\Enums\TaskStatus;
 use App\Model\User;
