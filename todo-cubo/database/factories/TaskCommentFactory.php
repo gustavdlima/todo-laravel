@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class TaskCommentFactory extends Factory
 {
+    protected $model = \App\Infrastructure\Models\TaskComment::class;
+
     /**
      * Define the model's default state.
      *

@@ -7,7 +7,6 @@ use App\Model\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
 class Task extends Model
 {
     use HasFactory;
@@ -46,5 +45,10 @@ class Task extends Model
     public function scopeCompleted($query)
     {
         return $query->where('status', TaskStatus::COMPLETED->value);
+    }
+
+    protected static function newFactory()
+    {
+        return \Database\Factories\TaskFactory::new();
     }
 }

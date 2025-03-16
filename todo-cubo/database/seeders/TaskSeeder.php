@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Infrastructure\Models\Task;
+use App\Infrastructure\Models\User;
 use App\Enums\TaskStatus;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class TaskSeeder extends Seeder
 {
@@ -15,6 +17,15 @@ class TaskSeeder extends Seeder
      */
     public function run()
     {
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Admin',
+                'password' => Hash::make('password'),
+                'active' => true,
+            ]
+        );
+
         Task::factory()
             ->pending()
             ->count(10)
@@ -29,11 +40,6 @@ class TaskSeeder extends Seeder
             ->completed()
             ->count(8)
             ->create();
-
-        $admin = User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-        ]);
 
         Task::factory()->forUser($admin)->create([
             'title' => 'Send data to the mayor',

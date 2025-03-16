@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::Class);
     }
+
+    protected static function newFactory()
+    {
+        return \Database\Factories\UserFactory::new();
+    }
 }

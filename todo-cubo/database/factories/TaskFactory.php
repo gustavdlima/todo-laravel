@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Infrastructure\Models\Task;
+use App\Infrastructure\Models\User;
 use App\Enums\TaskStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class TaskFactory extends Factory
 {
+    protected $model = \App\Infrastructure\Models\Task::class;
+
     /**
      * Define the model's default state.
      *
