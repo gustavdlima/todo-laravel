@@ -43,28 +43,10 @@ class EloquentTaskRepository implements TaskRepositoryInterface
         return $this->mapCollectionToEntities($taskModels);
     }
 
-	public function findAllOrderedByStatus(int $userId, SortDirection $direction = null): array
+	public function findByCreationDate(int $userId, DateTimeInterface $date): array
 	{
-		if ($direction === null) {
-			$direction = SortDirection::ASC();
-		}
-
 		$taskModels = TaskModel::where('user_id', $userId)
-			->orderBy('status', $direction->toString())
-			->get();
-
-		return $this->mapCollectionToEntities($taskModels);
-	}
-
-	public function findAllOrderedByCreationDate(int $userId, SortDirection $direction = null): array
-	{
-		if ($direction === null) {
-			$direction = SortDirection::ASC();
-		}
-
-		$taskModels = TaskModel::where('user_id', $userId)
-			->orderBy('created_at', $direction->toString())
-			->get();
+        ->whereDate('created_at', $date)->get();
 
 		return $this->mapCollectionToEntities($taskModels);
 	}

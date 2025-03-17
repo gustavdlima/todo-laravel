@@ -80,15 +80,9 @@ class TaskService
         return $this->taskRepository->findByDateRange($userId, $start, $end);
     }
 
-	public function listTaskByCreationDate(int $userId, SortDirection $direction = null): array
+	public function getTaskByCreationDate(int $userId, SortDirection $direction = null): array
 	{
-		return $this->taskRepository->findAllOrderedByCreationDate($userId, $direction);
+		return $this->taskRepository->findByCreationDate($userId, $direction);
 	}
-
-	public function listTasksOrderedByStatus( int $userId, SortDirection $direction = null): array
-	{
-        return $this->repository->findAllOrderedByStatus($userId, $sortDirection
-        );
-    }
 
 }
