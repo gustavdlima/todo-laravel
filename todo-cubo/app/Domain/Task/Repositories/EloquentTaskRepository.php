@@ -6,7 +6,6 @@ use App\Domain\TaskManagement\Entities\Task;
 use App\Domain\TaskManagement\Entities\TaskComment;
 use App\Domain\TaskManagement\Repositories\TaskRepositoryInterface;
 use App\Domain\TaskManagement\ValueObjects\TaskStatus;
-use App\Domain\TaskManagement\ValueObjects\SortDirection;
 use App\Infrastructure\Models\Task as TaskModel;
 use App\Infrastructure\Models\TaskComment as TaskCommentModel;
 use DateTimeInterface;
@@ -107,12 +106,6 @@ class EloquentTaskRepository implements TaskRepositoryInterface
             $model->user_id,
             $model->id
         );
-
-        // Carrega comentários se necessário
-        // $comments = $this->getComments($model->id);
-        // foreach ($comments as $comment) {
-        //     // Adicione os comentários ao objeto Task
-        // }
 
         return $task;
     }

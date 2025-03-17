@@ -4,7 +4,6 @@ namespace App\Domain\TaskManagement\Repositories;
 
 use App\Domain\TaskManagement\Entities\Task;
 use App\Domain\TaskManagement\ValueObjects\TaskStatus;
-use App\Domain\TaskManagement\ValueObjects\SortDirection;
 
 use DateTimeInterface;
 
