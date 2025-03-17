@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\TaskManagement\ValueObjects;
+namespace App\Domain\Task\ValueObjects;
 
 use InvalidArgumentException;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\TaskManagement\Entities;
+namespace App\Domain\Task\Entities;
 
 use DateTimeInterface;
 

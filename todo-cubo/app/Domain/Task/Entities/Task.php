@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Domain\TaskManagement\Entities;
+namespace App\Domain\Task\Entities;
 
-use App\Domain\TaskManagement\ValueObjects\TaskStatus;
+use App\Domain\Task\ValueObjects\TaskStatus;
 use DateTimeInterface;
-use App\Domain\TaskManagement\Events\TaskCompletedEvent;
-use App\Domain\UserManagement\Entities\User;
+use App\Domain\User\Entities\User;
 
 class Task
 {
