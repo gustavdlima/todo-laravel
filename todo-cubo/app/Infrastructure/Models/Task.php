@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Models;
 
 use App\Enums\TaskStatus;
-use App\Model\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,6 +28,11 @@ class Task extends Model
     public function user()
     {
         return $this->belongsTo(User::Class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(TaskComment::class);
     }
 
     // query scopes
