@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\TaskManagement\Services\TaskService;
-use App\Domain\TaskManagement\ValueObjects\TaskStatus;
+use App\Domain\Task\Services\TaskService;
+use App\Domain\Task\ValueObjects\TaskStatus;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
