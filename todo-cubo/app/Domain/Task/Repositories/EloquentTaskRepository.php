@@ -6,7 +6,6 @@ use App\Domain\TaskManagement\Entities\Task;
 use App\Domain\TaskManagement\Entities\TaskComment;
 use App\Domain\TaskManagement\Repositories\TaskRepositoryInterface;
 use App\Domain\TaskManagement\ValueObjects\TaskStatus;
-use App\Domain\TaskManagement\ValueObjects\SortDirection;
 use App\Infrastructure\Models\Task as TaskModel;
 use App\Infrastructure\Models\TaskComment as TaskCommentModel;
 use DateTimeInterface;
@@ -43,28 +42,10 @@ class EloquentTaskRepository implements TaskRepositoryInterface
         return $this->mapCollectionToEntities($taskModels);
     }
 
-	public function findAllOrderedByStatus(int $userId, SortDirection $direction = null): array
+	public function findByCreationDate(int $userId, DateTimeInterface $date): array
 	{
-		if ($direction === null) {
-			$direction = SortDirection::ASC();
-		}
-
 		$taskModels = TaskModel::where('user_id', $userId)
-			->orderBy('status', $direction->toString())
-			->get();
-
-		return $this->mapCollectionToEntities($taskModels);
-	}
-
-	public function findAllOrderedByCreationDate(int $userId, SortDirection $direction = null): array
-	{
-		if ($direction === null) {
-			$direction = SortDirection::ASC();
-		}
-
-		$taskModels = TaskModel::where('user_id', $userId)
-			->orderBy('created_at', $direction->toString())
-			->get();
+        ->whereDate('created_at', $date)->get();
 
 		return $this->mapCollectionToEntities($taskModels);
 	}
@@ -125,12 +106,6 @@ class EloquentTaskRepository implements TaskRepositoryInterface
             $model->user_id,
             $model->id
         );
-
-        // Carrega comentários se necessário
-        // $comments = $this->getComments($model->id);
-        // foreach ($comments as $comment) {
-        //     // Adicione os comentários ao objeto Task
-        // }
 
         return $task;
     }

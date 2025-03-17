@@ -5,7 +5,6 @@ namespace App\Domain\TaskManagement\Services;
 use App\Domain\TaskManagement\Entities\Task;
 use App\Domain\TaskManagement\Repositories\TaskRepositoryInterface;
 use App\Domain\TaskManagement\ValueObjects\TaskStatus;
-use App\Domain\TaskManagement\ValueObjects\SortDirection;
 
 use DateTime;
 
@@ -80,15 +79,9 @@ class TaskService
         return $this->taskRepository->findByDateRange($userId, $start, $end);
     }
 
-	public function listTaskByCreationDate(int $userId, SortDirection $direction = null): array
+	public function getTaskByCreationDate(int $userId, $date): array
 	{
-		return $this->taskRepository->findAllOrderedByCreationDate($userId, $direction);
+		return $this->taskRepository->findByCreationDate($userId, $date);
 	}
-
-	public function listTasksOrderedByStatus( int $userId, SortDirection $direction = null): array
-	{
-        return $this->repository->findAllOrderedByStatus($userId, $sortDirection
-        );
-    }
 
 }
