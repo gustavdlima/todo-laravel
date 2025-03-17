@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Domain\TaskManagement\Repositories\TaskRepositoryInterface;
+use App\Domain\Task\Repositories\TaskRepositoryInterface;
 use App\Infrastructure\Repositories\EloquentTaskRepository;
 use Illuminate\Support\ServiceProvider;
 

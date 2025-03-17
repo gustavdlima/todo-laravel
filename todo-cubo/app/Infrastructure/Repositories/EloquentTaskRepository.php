@@ -2,10 +2,10 @@
 
 namespace App\Infrastructure\Repositories;
 
-use App\Domain\TaskManagement\Entities\Task;
-use App\Domain\TaskManagement\Entities\TaskComment;
-use App\Domain\TaskManagement\Repositories\TaskRepositoryInterface;
-use App\Domain\TaskManagement\ValueObjects\TaskStatus;
+use App\Domain\Task\Entities\Task;
+use App\Domain\Task\Entities\TaskComment;
+use App\Domain\Task\Repositories\TaskRepositoryInterface;
+use App\Domain\Task\ValueObjects\TaskStatus;
 use App\Infrastructure\Models\Task as TaskModel;
 use App\Infrastructure\Models\TaskComment as TaskCommentModel;
 use DateTimeInterface;
