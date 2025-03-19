@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\Task\Services\TaskService;
 use App\Domain\Task\ValueObjects\TaskStatus;
+use App\Http\Resources\TaskDTO;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -42,7 +43,9 @@ class TaskController extends Controller
 				$validatedData['user_id']
 			);
 
-			return response()->json($task, 201);
+			$taskDTO = TaskDTO::fromEntity($task);
+
+			return response()->json($taskDTO, 201);
 		} catch (\Exception $e) {
 			return response()->json([
 				'error' => 'Error creating task.',
