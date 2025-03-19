@@ -8,10 +8,10 @@ use App\Domain\User\Entities\User;
 
 class Task
 {
-    private int $id;
+    private ?int $id;
     private string $title;
     private string $description;
-    private TaskStatus $status;
+    private ?TaskStatus $status;
     private DateTimeInterface $dueDate;
     private int $userId;
     private array $comments = [];
@@ -19,7 +19,7 @@ class Task
     public function __construct(
         string $title,
         string $description,
-        TaskStatus $status,
+        ?TaskStatus $status,
         DateTimeInterface $dueDate,
         int $userId,
         ?int $id = null

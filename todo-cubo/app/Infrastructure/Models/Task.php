@@ -22,12 +22,12 @@ class Task extends Model
     protected $casts = [
         'completed' => 'boolean',
         'due_date' => 'datetime',
-        'status' => TaskStatus::class
+        'status' => 'string'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::Class);
+        return $this->belongsTo(User::class);
     }
 
     public function comments()
