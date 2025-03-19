@@ -47,4 +47,17 @@ class TaskStatus
         return $this->value === $status->value;
     }
 
+    public function toString(): string
+    {
+        return $this->value;
+    }
+
+    public static function fromString(string $value): self
+    {
+        if (!in_array($value, self::ALLOWED_STATUSES)) {
+            throw new InvalidArgumentException("Invalid task status: {$value}");
+        }
+
+        return new self($value);
+    }
 }
