@@ -104,7 +104,8 @@ class EloquentTaskRepository implements TaskRepositoryInterface
             TaskStatus::fromString($model->status),
             $model->due_date,
             $model->user_id,
-            $model->id
+            $model->id,
+            new \DateTime($model->created_at),
         );
 
         return $task;
@@ -116,4 +117,5 @@ class EloquentTaskRepository implements TaskRepositoryInterface
             return $this->mapToEntity($model);
         })->toArray();
     }
+
 }
