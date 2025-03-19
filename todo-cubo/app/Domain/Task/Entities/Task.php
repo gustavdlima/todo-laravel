@@ -96,9 +96,9 @@ class Task
         return !$this->isCompleted() && $this->dueDate < new \DateTime();
     }
 
-    public function addComment(string $content, int $userId): void
+    public function addComment(string $content, int $userId, int $taskId): void
     {
-        $comment = new TaskComment($content, $userId, $this->id);
+        $comment = new TaskComment($content, $userId, $taskId);
         $this->comments[] = $comment;
     }
 
