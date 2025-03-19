@@ -4,7 +4,6 @@ namespace App\Domain\Task\Entities;
 
 use App\Domain\Task\ValueObjects\TaskStatus;
 use DateTimeInterface;
-use App\Domain\User\Entities\User;
 
 class Task
 {
@@ -15,6 +14,7 @@ class Task
     private DateTimeInterface $dueDate;
     private int $userId;
     private array $comments = [];
+    private ?DateTimeInterface $createdAt;
 
     public function __construct(
         string $title,
@@ -22,7 +22,8 @@ class Task
         ?TaskStatus $status,
         DateTimeInterface $dueDate,
         int $userId,
-        ?int $id = null
+        ?int $id = null,
+        ?DateTimeInterface $createdAt = null
     ) {
         $this->id = $id;
         $this->title = $title;
@@ -30,6 +31,7 @@ class Task
         $this->status = $status;
         $this->dueDate = $dueDate;
         $this->userId = $userId;
+        $this->createdAt = $createdAt;
     }
 
     public function getId(): ?int
@@ -96,15 +98,20 @@ class Task
         return !$this->isCompleted() && $this->dueDate < new \DateTime();
     }
 
-    public function addComment(string $content, int $userId): void
+    public function addComment(string $content, int $userId, int $taskId): void
     {
-        $comment = new TaskComment($content, $userId, $this->id);
+        $comment = new TaskComment($content, $userId, $taskId);
         $this->comments[] = $comment;
     }
 
     public function getComments(): array
     {
         return $this->comments;
+    }
+
+    public function getCreatedAt(): ?DateTimeInterface
+    {
+        return $this->createdAt;
     }
 }
 

@@ -55,4 +55,26 @@ class TaskTest extends TestCase
         $this->assertEquals(1, $comments[0]->getUserId());
     }
 
+     /**
+     * Test the task status change
+     */
+    public function test_can_change_task_status()
+    {
+        $task = new Task(
+            id: 1,
+            title: 'Implement API',
+            description: 'Develop endpoints',
+            status: TaskStatus::PENDING(),
+            userId: 1,
+            dueDate: new DateTime('2023-12-31'),
+        );
+
+        $task->setStatus(TaskStatus::IN_PROGRESS());
+        $this->assertEquals(TaskStatus::IN_PROGRESS(), $task->getStatus());
+
+        $task->setStatus(TaskStatus::COMPLETED());
+        $this->assertEquals(TaskStatus::COMPLETED(), $task->getStatus());
+    }
+
+
 }
