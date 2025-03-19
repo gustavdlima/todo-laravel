@@ -5,7 +5,7 @@ namespace App\Enums;
 enum TaskStatus: string
 {
     case PENDING = 'pending';
-    case IN_PROGRESS = 'in progress';
+    case IN_PROGRESS = 'in_progress';
     case COMPLETED = 'completed';
 
     public static function values(): array
@@ -17,4 +17,5 @@ enum TaskStatus: string
     {
         return array_column(self::cases(), 'name');
     }
+
 }
