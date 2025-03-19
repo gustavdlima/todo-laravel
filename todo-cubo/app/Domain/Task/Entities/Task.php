@@ -8,7 +8,7 @@ use App\Domain\User\Entities\User;
 
 class Task
 {
-    private int $id;
+    private ?int $id;
     private string $title;
     private string $description;
     private TaskStatus $status;
