@@ -7,7 +7,7 @@ use App\Enums\TaskStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Infrastructure/Models\Task>
  */
 class TaskFactory extends Factory
 {
@@ -26,7 +26,9 @@ class TaskFactory extends Factory
             'status' => $this->faker->randomElement(TaskStatus::cases()),
             'completed' => $this->faker->boolean(20), // 20%
             'due_date' => $this->faker->dateTimeBetween('now', '+30 days'),
-            'user_id' => User::factory()
+            'user_id' => User::factory(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 
