@@ -79,7 +79,7 @@ class TaskService
         return $this->taskRepository->findByDateRange($userId, $start, $end);
     }
 
-	public function getTaskByCreationDate(int $userId, $date): array
+	public function getTasksByCreationDate(int $userId, $date): array
 	{
 		return $this->taskRepository->findByCreationDate($userId, $date);
 	}

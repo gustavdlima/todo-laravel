@@ -123,7 +123,7 @@ class TaskController extends Controller
 		}
 
 		try {
-			$tasks = $this->taskService->getTaskByCreationDate($userId, $date);
+			$tasks = $this->taskService->getTasksByCreationDate($userId, $date);
 			return response()->json($tasks);
 		} catch (\Exception $e) {
 			return response()->json([
